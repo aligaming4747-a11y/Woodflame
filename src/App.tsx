@@ -409,10 +409,28 @@ export default function App() {
     } catch {}
   }, [cart]);
 
-  // Sync title
+  // Authoritative dynamic page title with Woodflame branding
   useEffect(() => {
-    document.title = store.settings.name || 'Woodflame';
-  }, [store.settings.name]);
+    const brandName = (store.settings.name || 'Woodflame').trim().replace(/woodflare/gi, 'Woodflame');
+    if (page === 'home') {
+      document.title = `${brandName} – High-Efficiency Biomass Rocket Stoves`;
+    } else if (page === 'shop') {
+      document.title = `Shop Rocket Stoves & Fuel | ${brandName}`;
+    } else if (page === 'product' && pid) {
+      const p = getProduct(pid);
+      document.title = p ? `${p.name} | ${brandName}` : `${brandName} Store`;
+    } else if (page === 'tracking') {
+      document.title = `Track Your Order | ${brandName}`;
+    } else if (page === 'admin') {
+      document.title = `Admin Panel | ${brandName}`;
+    } else if (page === 'account') {
+      document.title = `My Account | ${brandName}`;
+    } else if (page === 'checkout') {
+      document.title = `Checkout | ${brandName}`;
+    } else {
+      document.title = `${brandName} – High-Efficiency Biomass Rocket Stoves`;
+    }
+  }, [store.settings.name, page, pid]);
 
   // Helpers
   const fmt = (n: number) =>
@@ -941,7 +959,7 @@ Thank you for shopping with Woodflame Fabrications!`;
                   {heroSlides[activeSlide].tag && (
                     <span className="hero-tag">{heroSlides[activeSlide].tag}</span>
                   )}
-                  <h2>{heroSlides[activeSlide].t || s.hero}</h2>
+                  <h1>{heroSlides[activeSlide].t || s.hero}</h1>
                   <p>{heroSlides[activeSlide].d || s.sub}</p>
                 </div>
 

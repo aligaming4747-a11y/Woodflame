@@ -1,6 +1,6 @@
 {
-  "name": "Woodflare - Biomass Rocket Stoves & Store",
-  "description": "Official Woodflare high-efficiency biomass rocket stoves store with live product showroom, instant checkout, order tracking, and comprehensive admin management panel.",
+  "name": "Woodflame - Biomass Rocket Stoves & Store",
+  "description": "Official Woodflame high-efficiency biomass rocket stoves store with live product showroom, instant checkout, order tracking, and comprehensive admin management panel.",
   "requestFramePermissions": [],
   "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
 }

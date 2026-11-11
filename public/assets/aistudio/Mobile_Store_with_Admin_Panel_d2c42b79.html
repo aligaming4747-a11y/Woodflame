@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>My Store</title>
+<style>
+:root{--bg:#fff;--bg2:#f6f6f7;--tx:#16171a;--mu:#6b6f76;--bd:#e7e8ea;--ac:#f5a800;--acx:#16171a;--dk:#16171a;--dkx:#fff;--bad:#d32f2f;--ok:#2e9e5b;--sh:0 2px 12px rgba(0,0,0,.06);box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#101113;--bg2:#1a1b1e;--tx:#f1f2f3;--mu:#9a9ea5;--bd:#2c2e32;--dk:#f1f2f3;--dkx:#101113;--sh:none}}
+html{scroll-padding-top:env(safe-area-inset-top,0px);scroll-behavior:smooth}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--tx);font:15px/1.55 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;-webkit-font-smoothing:antialiased}
+img{max-width:100%;display:block}
+svg{flex:none;vertical-align:middle}
+button,input,select,textarea{font:inherit;color:inherit}
+button{cursor:pointer}
+a{color:inherit;text-decoration:none}
+.w{max-width:1140px;margin:0 auto;padding:0 16px}
+.bar{background:var(--dk);color:var(--dkx);text-align:center;font-size:12.5px;padding:8px 12px;letter-spacing:.2px}
+header{position:sticky;top:env(safe-area-inset-top,0px);background:var(--bg);border-bottom:1px solid var(--bd);z-index:20}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);background:var(--bg);z-index:25}
+header .w{display:flex;align-items:center;justify-content:space-between;height:60px;gap:12px}
+.logo{font-weight:800;font-size:19px;display:flex;align-items:center;gap:8px;cursor:pointer;letter-spacing:-.3px}
+.lg{width:30px;height:30px;border-radius:8px;background:var(--ac);color:#16171a;display:flex;align-items:center;justify-content:center}
+nav{display:none;gap:26px;font-weight:500;font-size:14.5px}
+nav a{cursor:pointer;color:var(--mu)}nav a:hover{color:var(--tx)}
+.ib{background:none;border:0;padding:8px;border-radius:10px;position:relative;display:inline-flex}
+.ib:hover{background:var(--bg2)}
+.cnt{position:absolute;top:0;right:0;background:var(--ac);color:#16171a;border-radius:10px;font-size:10.5px;min-width:17px;height:17px;line-height:17px;font-weight:700;text-align:center}
+.mn{display:none;border-top:1px solid var(--bd);padding:6px 16px 12px;background:var(--bg)}
+.mn.on{display:block}.mn a{display:block;padding:11px 0;border-bottom:1px solid var(--bd);cursor:pointer}
+.hero{position:relative;min-height:400px;display:flex;align-items:center;background:linear-gradient(135deg,#1c1d21,#3b3128) center/cover;color:#fff}
+.hero:before{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(0,0,0,.72),rgba(0,0,0,.25))}
+.hero .w{position:relative;width:100%}
+.hero h1{font-size:clamp(30px,7vw,54px);margin:0 0 10px;line-height:1.1;letter-spacing:-1px;max-width:600px}
+.hero p{margin:0 0 22px;max-width:480px;opacity:.88;font-size:16.5px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;background:var(--ac);color:#16171a;border:0;border-radius:10px;padding:13px 22px;font-weight:700;text-align:center;transition:.15s}
+.btn:hover{filter:brightness(.95)}
+.btn.dk{background:var(--dk);color:var(--dkx)}
+.btn.ol{background:none;border:1px solid var(--bd);color:var(--tx);font-weight:600}
+.btn.sm{padding:8px 13px;font-size:13px;border-radius:8px}
+.btn.dg{background:var(--bad);color:#fff}
+.btn.full{width:100%;margin-top:10px}
+.btn:disabled{opacity:.5;cursor:not-allowed}
+.feat{display:grid;gap:12px;padding:26px 0 6px}
+.feat div{display:flex;gap:14px;align-items:center;background:var(--bg2);border-radius:14px;padding:16px}
+.feat .fi{width:46px;height:46px;border-radius:12px;background:var(--bg);display:flex;align-items:center;justify-content:center;color:var(--ac);box-shadow:var(--sh)}
+.feat b{display:block}.feat span{color:var(--mu);font-size:13.5px}
+.sec{font-size:26px;font-weight:800;letter-spacing:-.5px;margin:44px 0 6px;text-align:center}
+.sub{text-align:center;color:var(--mu);margin:0 0 22px}
+.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+.card{background:var(--bg);border:1px solid var(--bd);border-radius:14px;overflow:hidden;cursor:pointer;position:relative;transition:.2s}
+.card:hover{box-shadow:0 8px 24px rgba(0,0,0,.1);transform:translateY(-2px)}
+.card img{aspect-ratio:1;object-fit:cover;width:100%;background:var(--bg2)}
+.card .in{padding:11px 12px 14px}
+.card .n{font-weight:600;font-size:14.5px;margin-bottom:3px;line-height:1.3}
+.badge{position:absolute;top:10px;left:10px;background:var(--ac);color:#16171a;font-size:11px;font-weight:800;padding:3px 9px;border-radius:6px;letter-spacing:.3px}
+.badge.oos{background:#6b6f76;color:#fff}
+.st{display:inline-flex;gap:1px;color:#f5a800}.st .e{color:var(--bd)}
+.pr{font-weight:700;margin-top:3px}
+.pr s{color:var(--mu);font-weight:400;font-size:.88em;margin-left:6px}
+.car{display:flex;gap:14px;overflow-x:auto;scroll-snap-type:x mandatory;padding-bottom:10px;scrollbar-width:none}
+.car>div{flex:0 0 74%;scroll-snap-align:start;border-radius:16px;overflow:hidden;position:relative;background:var(--bg2)}
+.car img{aspect-ratio:3/4;object-fit:cover;width:100%}
+.car em{position:absolute;left:0;right:0;bottom:0;padding:40px 14px 14px;background:linear-gradient(transparent,rgba(0,0,0,.8));color:#fff;font-style:normal;font-weight:600}
+.rv{display:grid;gap:12px}
+.rv>div{background:var(--bg2);border-radius:14px;padding:18px}
+.rv p{margin:8px 0;color:var(--tx)}.rv small{color:var(--mu)}
+.rt{display:flex;align-items:center;justify-content:center;gap:8px;margin-bottom:20px;color:var(--mu)}
+footer{background:#111214;color:#b9bcc2;margin-top:56px;padding-top:44px}
+footer h4{color:#fff;margin:0 0 14px;font-size:15px}
+footer .cols{display:grid;gap:30px}
+footer a,footer li{cursor:pointer;color:#b9bcc2}footer a:hover{color:var(--ac)}
+footer ul{list-style:none;margin:0;padding:0;display:grid;gap:10px}
+footer li{display:flex;gap:10px;align-items:flex-start}
+footer li svg{color:var(--ac);margin-top:3px}
+.so{display:flex;gap:10px;margin-top:14px}
+.so a{width:38px;height:38px;border-radius:50%;background:#23252a;display:flex;align-items:center;justify-content:center;color:#fff}
+.so a:hover{background:var(--ac);color:#111}
+.fb{border-top:1px solid #26282d;margin-top:34px;padding:18px 0 90px;display:flex;flex-wrap:wrap;gap:8px 20px;justify-content:space-between;font-size:13px}
+.pays{display:flex;gap:8px;flex-wrap:wrap}.pays span{background:#23252a;border-radius:6px;padding:3px 10px;font-size:12px;color:#fff}
+.wa{position:fixed;right:16px;bottom:calc(18px + env(safe-area-inset-bottom,0px));width:56px;height:56px;border-radius:50%;background:#25d366;color:#fff;display:flex;align-items:center;justify-content:center;box-shadow:0 6px 18px rgba(37,211,102,.45);z-index:30}
+.pg{display:grid;gap:22px;padding:14px 0}
+.main{aspect-ratio:1;object-fit:cover;width:100%;border-radius:16px;background:var(--bg2)}
+.th{display:flex;gap:8px;margin-top:10px;overflow-x:auto}
+.th img{width:66px;height:66px;object-fit:cover;border-radius:10px;border:2px solid transparent;cursor:pointer;flex:none;opacity:.7}
+.th img.on{border-color:var(--tx);opacity:1}
+.dot{display:inline-block;width:9px;height:9px;border-radius:50%;background:var(--ok);margin-right:7px}
+.dot.r{background:var(--bad)}
+.desc{white-space:pre-line;color:var(--mu)}
+.q{display:inline-flex;align-items:center;border:1px solid var(--bd);border-radius:10px}
+.q button{background:none;border:0;width:38px;height:44px;display:flex;align-items:center;justify-content:center}
+.q span{min-width:28px;text-align:center;font-weight:600}
+.row{display:flex;gap:10px;align-items:center;margin:14px 0}
+.row .btn{flex:1}
+.cm{border:1.5px solid var(--ac);border-radius:14px;overflow:hidden;margin:18px 0}
+.cm h4{background:var(--ac);color:#16171a;margin:0;padding:9px;text-align:center;letter-spacing:.8px;font-size:13px}
+.cm div{display:grid;grid-template-columns:repeat(3,1fr);text-align:center;font-size:12.5px;padding:14px 4px;gap:6px}
+.cm span{display:flex;flex-direction:column;align-items:center;gap:6px}.cm svg{color:var(--ac)}
+details{border-top:1px solid var(--bd);padding:12px 0}
+summary{font-weight:700;cursor:pointer;display:flex;align-items:center;gap:8px}
+table{width:100%;border-collapse:collapse;font-size:14px;margin-top:8px}
+td{padding:9px 10px;border-bottom:1px solid var(--bd);vertical-align:top}
+tr:nth-child(odd) td{background:var(--bg2)}
+.ov{position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:40}
+.dr{position:fixed;top:0;right:0;bottom:0;width:min(420px,100%);background:var(--bg);z-index:41;display:flex;flex-direction:column;padding:16px;padding-top:calc(16px + env(safe-area-inset-top,0px));padding-bottom:calc(16px + env(safe-area-inset-bottom,0px))}
+.dr .ls{flex:1;overflow:auto}
+.ci{display:flex;gap:12px;margin:12px 0;align-items:center}
+.ci img{width:62px;height:62px;object-fit:cover;border-radius:10px}
+.ci>div{flex:1;font-size:14px}
+label{display:block;font-size:12.5px;font-weight:600;color:var(--mu);margin:12px 0 4px}
+input,select,textarea{width:100%;border:1px solid var(--bd);border-radius:10px;padding:11px 12px;background:var(--bg);outline:none}
+input:focus,select:focus,textarea:focus{border-color:var(--tx)}
+input[type=checkbox],input[type=radio]{width:auto}
+.box{border:1px solid var(--bd);border-radius:14px;padding:16px;margin:12px 0;background:var(--bg)}
+.box.sel{border:2px solid var(--tx)}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+h3.h{display:flex;align-items:center;gap:8px;font-size:17px;margin:22px 0 8px}
+.ad{padding:18px 0 70px}
+.tabs{display:flex;gap:8px;overflow-x:auto;margin:14px 0 18px;scrollbar-width:none}
+.tabs button{border:1px solid var(--bd);background:var(--bg);border-radius:30px;padding:9px 16px;white-space:nowrap;display:flex;gap:7px;align-items:center;font-weight:600;font-size:13.5px}
+.tabs button.on{background:var(--dk);color:var(--dkx);border-color:var(--dk)}
+.stats{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.stats div{background:var(--bg2);border-radius:14px;padding:16px}
+.stats svg{color:var(--ac)}.stats b{display:block;font-size:24px;margin-top:6px}.stats span{color:var(--mu);font-size:13px}
+.li{display:flex;gap:12px;align-items:center;border:1px solid var(--bd);border-radius:14px;padding:10px;margin:10px 0}
+.li img{width:56px;height:56px;object-fit:cover;border-radius:10px}
+.li>div{flex:1;min-width:0}
+.li .ac{display:flex;gap:6px}
+.ti{position:relative;display:inline-block;margin:5px 8px 5px 0}
+.ti img{width:84px;height:84px;object-fit:cover;border-radius:10px}
+.ti button{position:absolute;top:-7px;right:-7px;background:var(--bad);color:#fff;border:0;border-radius:50%;width:24px;height:24px;display:flex;align-items:center;justify-content:center;padding:0}
+.tc{text-align:center;padding:50px 10px;color:var(--mu)}
+.ok{width:76px;height:76px;border-radius:50%;background:var(--ok);color:#fff;display:flex;align-items:center;justify-content:center;margin:0 auto 14px}
+.hint{color:var(--mu);font-size:13px}
+@media(min-width:760px){.grid{grid-template-columns:repeat(4,1fr);gap:18px}.feat{grid-template-columns:repeat(3,1fr)}.pg{grid-template-columns:1fr 1fr;gap:42px}.car>div{flex-basis:31%}.hero{min-height:520px}.co{display:grid;grid-template-columns:1.3fr 1fr;gap:34px}nav{display:flex}.mbtn{display:none}.rv{grid-template-columns:repeat(3,1fr)}footer .cols{grid-template-columns:1.5fr 1fr 1.3fr 1fr}.stats{grid-template-columns:repeat(4,1fr)}}
+</style>
+</head>
+<body>
+<div id="app"></div>
+<script>
+const KEY='store_v2';
+const P={
+cart:'<path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/>',
+menu:'<path d="M4 6h16M4 12h16M4 18h16"/>',x:'<path d="M18 6 6 18M6 6l12 12"/>',
+truck:'<path d="M10 17h4V5H2v12h3"/><path d="M20 17h2v-3.34a4 4 0 0 0-1.17-2.83L19 9h-5"/><path d="M14 17h1"/><circle cx="7.5" cy="17.5" r="2.5"/><circle cx="17.5" cy="17.5" r="2.5"/>',
+shield:'<path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/><path d="m9 12 2 2 4-4"/>',
+refresh:'<path d="M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8"/><path d="M21 3v5h-5"/><path d="M21 12a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 16"/><path d="M8 16H3v5"/>',
+award:'<circle cx="12" cy="9" r="6"/><path d="M8.21 13.89 7 23l5-3 5 3-1.21-9.12"/>',
+phone:'<path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/>',
+mail:'<rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/>',
+pin:'<path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/>',
+plus:'<path d="M5 12h14M12 5v14"/>',minus:'<path d="M5 12h14"/>',
+edit:'<path d="M17 3a2.85 2.83 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z"/>',
+trash:'<path d="M3 6h18"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6"/><path d="M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/>',
+back:'<path d="m12 19-7-7 7-7M19 12H5"/>',arrow:'<path d="M5 12h14M12 5l7 7-7 7"/>',
+pkg:'<path d="m7.5 4.27 9 5.15"/><path d="M21 8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16Z"/><path d="M3.29 7 12 12l8.71-5M12 22V12"/>',
+cog:'<path d="M4 21v-7M4 10V3M12 21v-9M12 8V3M20 21v-5M20 12V3M1 14h6M9 8h6M17 16h6"/>',
+chart:'<path d="M12 20V10M18 20V4M6 20v-4"/>',
+img:'<rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="9" cy="9" r="2"/><path d="m21 15-3.09-3.09a2 2 0 0 0-2.82 0L6 21"/>',
+check:'<path d="M20 6 9 17l-5-5"/>',chev:'<path d="m6 9 6 6 6-6"/>',
+chat:'<path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>',
+home:'<path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><path d="M9 22V12h6v10"/>',
+card:'<rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20"/>',
+fb:'<path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/>',
+ig:'<rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/>',
+yt:'<path d="M2.5 17a24.12 24.12 0 0 1 0-10 2 2 0 0 1 1.4-1.4 49.56 49.56 0 0 1 16.2 0A2 2 0 0 1 21.5 7a24.12 24.12 0 0 1 0 10 2 2 0 0 1-1.4 1.4 49.55 49.55 0 0 1-16.2 0A2 2 0 0 1 2.5 17"/><path d="m10 15 5-3-5-3z"/>',
+star:'<path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01z"/>',
+wa:'<path d="M17.47 14.38c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.16-.17.2-.35.22-.65.07-.3-.15-1.26-.46-2.39-1.48-.88-.79-1.48-1.76-1.65-2.06-.17-.3-.02-.46.13-.61.14-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.03-.52-.07-.15-.67-1.61-.92-2.2-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.8.37-.27.3-1.04 1.02-1.04 2.48s1.07 2.88 1.21 3.07c.15.2 2.1 3.2 5.08 4.49.71.3 1.26.49 1.69.63.71.23 1.36.2 1.87.12.57-.08 1.76-.72 2-1.41.25-.7.25-1.29.17-1.41-.07-.13-.27-.2-.57-.35m-5.42 7.4h-.01a9.87 9.87 0 0 1-5.03-1.38l-.36-.21-3.74.98 1-3.65-.24-.37a9.86 9.86 0 0 1-1.51-5.26c0-5.45 4.44-9.88 9.89-9.88 2.64 0 5.12 1.03 6.99 2.9a9.83 9.83 0 0 1 2.89 6.99c0 5.45-4.44 9.88-9.88 9.88m8.41-18.3A11.82 11.82 0 0 0 12.05 0C5.5 0 .16 5.34.16 11.89c0 2.1.55 4.14 1.59 5.95L.06 24l6.3-1.65a11.88 11.88 0 0 0 5.68 1.45h.01c6.55 0 11.89-5.34 11.89-11.89 0-3.18-1.24-6.17-3.48-8.41z"/>'};
+const FILL={wa:1,star:1};
+const I=(n,s)=>{s=s||20;return FILL[n]?`<svg width="${s}" height="${s}" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">${P[n]}</svg>`:`<svg width="${s}" height="${s}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${P[n]}</svg>`};
+const ph=(t,c)=>'data:image/svg+xml;utf8,'+encodeURIComponent(`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400"><rect width="400" height="400" fill="${c}"/><g fill="none" stroke="rgba(255,255,255,.55)" stroke-width="8" stroke-linejoin="round"><path d="M200 120l70 40v80l-70 40-70-40v-80z"/><path d="M130 160l70 40 70-40M200 200v80"/></g><text x="200" y="345" font-family="sans-serif" font-size="20" fill="rgba(255,255,255,.8)" text-anchor="middle">${t}</text></svg>`);
+const COL=['#5d4037','#37474f','#6d4c41','#455a64','#4e342e','#546e7a'];
+const mk=(i,n,p,c)=>({id:'p'+i,name:n,price:p,compare:c,stock:true,rating:5,images:[ph('Default image 1',COL[i%6]),ph('Default image 2',COL[(i+1)%6])],desc:'Describe your product here.\n\n• Feature one\n• Feature two\n• Feature three',specs:[['Height','20 inch'],['Material','16 Gauge Iron'],['Weight','15–20 KG']]});
+const DEF=()=>({settings:{name:'My Store',bar:'Delivery charges must be paid in advance',hero:'Built to Last',sub:'Quality products, delivered nationwide with care.',heroBtn:'Shop now',heroImg:'',cur:'Rs.',wa:'923001234567',ship:500,email:'info@mystore.com',phone:'0300-0000000',address:'Your city, Pakistan',about:'We are a Pakistani manufacturer producing durable products designed for long-lasting performance and everyday reliability.',bank:'Bank: Your Bank\nAccount title: Your Name\nAccount no: 0000000000000',fb:'',ig:'',yt:'',feats:[{i:'truck',t:'Nationwide Delivery',d:'Fast and tracked shipping across Pakistan'},{i:'award',t:'Built to Last',d:'Every item checked before it ships'},{i:'shield',t:'Trusted Everywhere',d:'Chosen by households and professionals'}]},products:[mk(0,'Sample Product One',8000,9500),mk(1,'Sample Product Two',10000,11500),mk(2,'Sample Product Three',14000,16500),mk(3,'Sample Product Four',17000,18500)],gallery:[{img:ph('Gallery 1',COL[0]),t:'Product One'},{img:ph('Gallery 2',COL[1]),t:'Product Two'},{img:ph('Gallery 3',COL[2]),t:'Product Three'}],reviews:[{n:'Ahmed R.',r:5,t:'Excellent quality and fast delivery. Highly recommended!'},{n:'Sara K.',r:5,t:'Exactly as described. Packaging was great.'},{n:'Bilal H.',r:4,t:'Good value for money. Will order again.'}],orders:[]});
+let S;try{S=JSON.parse(localStorage.getItem(KEY))}catch(e){}
+if(!S||!S.products)S=DEF();
+let cart=[];try{cart=JSON.parse(localStorage.getItem(KEY+'c'))||[]}catch(e){}
+const save=()=>{try{localStorage.setItem(KEY,JSON.stringify(S));localStorage.setItem(KEY+'c',JSON.stringify(cart))}catch(e){alert('Storage is full. Delete some images or products.')}};
+let V={page:'home',pid:null,img:0,qty:1,cart:false,menu:false,tab:'dash',edit:null,last:null};
+const $=id=>document.getElementById(id);
+const esc=s=>String(s==null?'':s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const fmt=n=>S.settings.cur+' '+Number(n||0).toLocaleString('en-US');
+const prod=id=>S.products.find(p=>p.id===id);
+const stars=(n,s)=>`<span class="st">${[1,2,3,4,5].map(i=>`<span class="${i<=n?'':'e'}">${I('star',s||14)}</span>`).join('')}</span>`;
+const sub=()=>cart.reduce((a,c)=>a+(prod(c.id)?prod(c.id).price*c.q:0),0);
+const go=(p,id)=>{V.page=p;V.menu=false;if(id){V.pid=id;V.img=0;V.qty=1}V.cart=false;render();scrollTo(0,0)};
+const goSec=id=>{V.menu=false;if(V.page!=='home'){V.page='home';render()}setTimeout(()=>{const e=$(id);if(e)e.scrollIntoView({behavior:'smooth'})},30)};
+function fileToData(f,max){return new Promise(r=>{const fr=new FileReader();fr.onload=()=>{const i=new Image();i.onload=()=>{const k=Math.min(1,(max||900)/Math.max(i.width,i.height));const c=document.createElement('canvas');c.width=i.width*k;c.height=i.height*k;c.getContext('2d').drawImage(i,0,0,c.width,c.height);r(c.toDataURL('image/jpeg',.8))};i.src=fr.result};fr.readAsDataURL(f)})}
+
+function cardH(p){const sale=p.compare>p.price;return `<div class="card" onclick="go('product','${p.id}')">${!p.stock?'<span class="badge oos">SOLD OUT</span>':sale?'<span class="badge">SALE</span>':''}<img src="${p.images[0]||ph('No image','#888')}" alt="${esc(p.name)}" loading="lazy"><div class="in"><div class="n">${esc(p.name)}</div>${stars(p.rating)}<div class="pr">${fmt(p.price)}${sale?`<s>${fmt(p.compare)}</s>`:''}</div></div></div>`}
+
+function header(){const n=cart.reduce((a,c)=>a+c.q,0);const L=[['Home',"go('home')"],['Products',"goSec('all')"],['Reviews',"goSec('rev')"],['Contact',"goSec('contact')"]];
+return `${S.settings.bar?`<div class="bar">${esc(S.settings.bar)}</div>`:''}<header><div class="w"><div class="logo" onclick="go('home')"><span class="lg">${I('pkg',18)}</span>${esc(S.settings.name)}</div><nav>${L.map(l=>`<a onclick="${l[1]}">${l[0]}</a>`).join('')}</nav><div><button class="ib" onclick="V.cart=true;render()" aria-label="Cart">${I('cart',22)}${n?`<span class="cnt">${n}</span>`:''}</button><button class="ib mbtn" onclick="V.menu=!V.menu;render()" aria-label="Menu">${I(V.menu?'x':'menu',22)}</button></div></div><div class="mn ${V.menu?'on':''}">${L.map(l=>`<a onclick="${l[1]}">${l[0]}</a>`).join('')}</div></header>`}
+
+function footer(){const s=S.settings;const soc=[['fb','fb'],['ig','ig'],['yt','yt']].filter(x=>s[x[0]]).map(x=>`<a href="${esc(s[x[0]])}" target="_blank" rel="noopener" aria-label="${x[0]}">${I(x[1],18)}</a>`).join('');
+return `<footer id="contact"><div class="w"><div class="cols"><div><div class="logo" style="color:#fff;margin-bottom:12px"><span class="lg">${I('pkg',18)}</span>${esc(s.name)}</div><p style="margin:0;max-width:340px">${esc(s.about)}</p><div class="so">${soc}<a href="https://wa.me/${esc(s.wa)}" target="_blank" rel="noopener" aria-label="WhatsApp">${I('wa',18)}</a></div></div>
+<div><h4>Quick links</h4><ul><li><a onclick="go('home')">Home</a></li><li><a onclick="goSec('all')">All products</a></li><li><a onclick="goSec('rev')">Customer reviews</a></li><li><a onclick="V.cart=true;render()">My cart</a></li></ul></div>
+<div><h4>Contact us</h4><ul><li>${I('phone',17)}<a href="tel:${esc(s.phone)}">${esc(s.phone)}</a></li><li>${I('mail',17)}<a href="mailto:${esc(s.email)}">${esc(s.email)}</a></li><li>${I('pin',17)}<span>${esc(s.address)}</span></li><li>${I('wa',17)}<a href="https://wa.me/${esc(s.wa)}" target="_blank" rel="noopener">Chat on WhatsApp</a></li></ul></div>
+<div><h4>Why shop with us</h4><ul><li>${I('truck',17)}Nationwide delivery</li><li>${I('shield',17)}Damage protection</li><li>${I('refresh',17)}Easy replacements</li></ul></div></div>
+<div class="fb"><span>© ${new Date().getFullYear()} ${esc(s.name)}. All rights reserved.</span><div class="pays"><span>Cash on Delivery</span><span>Bank Transfer</span></div><a onclick="openAdmin()">Admin panel</a></div></div></footer><a class="wa" href="https://wa.me/${esc(s.wa)}" target="_blank" rel="noopener" aria-label="Chat on WhatsApp">${I('wa',30)}</a>`}
+
+function home(){const s=S.settings;const avg=S.reviews.length?(S.reviews.reduce((a,r)=>a+r.r,0)/S.reviews.length).toFixed(2):0;
+return `<div class="hero" style="${s.heroImg?`background-image:url(${s.heroImg})`:''}"><div class="w"><h1>${esc(s.hero)}</h1><p>${esc(s.sub)}</p><a class="btn" onclick="goSec('all')">${esc(s.heroBtn)} ${I('arrow',18)}</a></div></div>
+<div class="w"><div class="feat">${s.feats.map(f=>`<div><span class="fi">${I(f.i,24)}</span><p style="margin:0"><b>${esc(f.t)}</b><span>${esc(f.d)}</span></p></div>`).join('')}</div>
+<h2 class="sec" id="all">All Products</h2><p class="sub">Browse our collection</p>${S.products.length?`<div class="grid">${S.products.map(cardH).join('')}</div>`:'<p class="tc">No products yet. Add some from the admin panel.</p>'}
+${S.gallery.length?`<h2 class="sec">In Action</h2><p class="sub">See our products in real use</p><div class="car">${S.gallery.map(g=>`<div><img src="${g.img}" alt="" loading="lazy"><em>${esc(g.t)}</em></div>`).join('')}</div>`:''}
+${S.reviews.length?`<h2 class="sec" id="rev">Customer Reviews</h2><div class="rt">${stars(Math.round(avg),18)}<b style="color:var(--tx)">${avg}</b> out of 5</div><div class="rv">${S.reviews.map(r=>`<div>${stars(r.r)}<p>${esc(r.t)}</p><small>— ${esc(r.n)}</small></div>`).join('')}</div>`:''}</div>`}
+
+function productPage(){const p=prod(V.pid);if(!p)return '<div class="tc">Product not found.</div>';const sale=p.compare>p.price;const im=p.images.length?p.images:[ph('No image','#888')];const sim=S.products.filter(x=>x.id!==p.id).slice(0,4);const d=p.stock?'':'disabled';
+return `<div class="w"><p style="margin:14px 0 0"><a onclick="go('home')" style="color:var(--mu);cursor:pointer;display:inline-flex;gap:6px;align-items:center">${I('back',16)} Back to store</a></p><div class="pg"><div><img class="main" src="${im[V.img]||im[0]}" alt=""><div class="th">${im.map((x,i)=>`<img src="${x}" class="${i===V.img?'on':''}" onclick="V.img=${i};render()" alt="">`).join('')}</div></div>
+<div><h1 style="font-size:26px;margin:0 0 6px;letter-spacing:-.5px">${esc(p.name)}</h1>${stars(p.rating,16)}<div class="pr" style="font-size:22px;margin:8px 0">${fmt(p.price)}${sale?`<s>${fmt(p.compare)}</s>`:''}</div>
+<p style="margin:6px 0 14px"><span class="dot ${p.stock?'':'r'}"></span>${p.stock?'In stock':'Out of stock'}</p><div class="desc">${esc(p.desc)}</div>
+<div class="row"><div class="q"><button onclick="V.qty=Math.max(1,V.qty-1);render()" aria-label="Less">${I('minus',16)}</button><span>${V.qty}</span><button onclick="V.qty++;render()" aria-label="More">${I('plus',16)}</button></div><button class="btn" ${d} onclick="addCart('${p.id}',V.qty,false)">${I('cart',18)} Add to cart</button></div>
+<button class="btn dk full" ${d} onclick="addCart('${p.id}',V.qty,true)">Buy it now</button>
+<div class="cm"><h4>OUR COMMITMENT</h4><div><span>${I('truck',26)}Delivery Nationwide</span><span>${I('shield',26)}Damage Protection</span><span>${I('refresh',26)}Easy Replacements</span></div></div>
+${p.specs.length?`<details open><summary>${I('cog',18)} Technical Specifications</summary><table>${p.specs.map(r=>`<tr><td><b>${esc(r[0])}</b></td><td>${esc(r[1])}</td></tr>`).join('')}</table></details>`:''}
+</div></div>${sim.length?`<h2 class="sec">Similar Products</h2><div class="grid" style="margin-top:20px">${sim.map(cardH).join('')}</div>`:''}</div>`}
+
+function addCart(id,q,now){const c=cart.find(x=>x.id===id);if(c)c.q+=q;else cart.push({id,q});save();if(now)go('checkout');else{V.cart=true;render()}}
+function cartQ(id,d){const c=cart.find(x=>x.id===id);c.q+=d;if(c.q<1)cart=cart.filter(x=>x.id!==id);save();render()}
+function cartDrawer(){if(!V.cart)return '';cart=cart.filter(c=>prod(c.id));return `<div class="ov" onclick="V.cart=false;render()"></div><div class="dr"><div style="display:flex;justify-content:space-between;align-items:center"><h3 style="margin:0">Your cart</h3><button class="ib" onclick="V.cart=false;render()" aria-label="Close">${I('x',22)}</button></div><div class="ls">${cart.length?cart.map(c=>{const p=prod(c.id);return `<div class="ci"><img src="${p.images[0]||ph('','#888')}" alt=""><div>${esc(p.name)}<br><b>${fmt(p.price)}</b></div><div class="q"><button onclick="cartQ('${c.id}',-1)">${I('minus',14)}</button><span>${c.q}</span><button onclick="cartQ('${c.id}',1)">${I('plus',14)}</button></div></div>`}).join(''):`<p class="tc">${I('cart',40)}<br>Your cart is empty.</p>`}</div>${cart.length?`<div style="display:flex;justify-content:space-between;margin:10px 0"><b>Subtotal</b><b>${fmt(sub())}</b></div><button class="btn full" onclick="go('checkout')">Checkout ${I('arrow',18)}</button>`:''}</div>`}
+
+function checkout(){if(!cart.length)return `<div class="tc"><h2 style="color:var(--tx)">Your cart is empty</h2><button class="btn" onclick="go('home')">Continue shopping</button></div>`;const sh=+S.settings.ship||0;
+return `<div class="w"><p style="margin:14px 0 0"><a onclick="go('home')" style="color:var(--mu);cursor:pointer;display:inline-flex;gap:6px;align-items:center">${I('back',16)} Continue shopping</a></p><div class="co"><div><h3 class="h">${I('phone',20)} Contact</h3><input id="f_ph" type="tel" placeholder="Mobile phone number"><h3 class="h">${I('pin',20)} Delivery</h3><div class="two"><input id="f_fn" placeholder="First name"><input id="f_ln" placeholder="Last name"></div><label>Address</label><input id="f_ad"><div class="two"><div><label>City</label><input id="f_ct"></div><div><label>Postal code (optional)</label><input id="f_pc"></div></div>
+<h3 class="h">${I('truck',20)} Shipping method</h3><div class="box sel" style="display:flex;justify-content:space-between"><span>Standard (5–7 working days)</span><b>${fmt(sh)}</b></div>
+<h3 class="h">${I('card',20)} Payment</h3><label class="box sel" id="pm1" style="color:var(--tx);font-size:15px;font-weight:500"><input type="radio" name="pm" value="COD" checked onchange="pmSel()"> COD (Delivery charges advance)<br><small style="color:var(--mu)">Pay the delivery charges in advance. The remaining amount is paid in cash on delivery.</small></label><label class="box" id="pm2" style="color:var(--tx);font-size:15px;font-weight:500"><input type="radio" name="pm" value="Bank Transfer" onchange="pmSel()"> Bank Transfer<div id="bk" style="display:none;white-space:pre-line;color:var(--mu);font-weight:400;margin-top:8px">${esc(S.settings.bank)}</div></label></div>
+<div><div class="box"><h3 style="margin-top:0">Order summary</h3>${cart.map(c=>{const p=prod(c.id);return p?`<div class="ci"><img src="${p.images[0]||ph('','#888')}" alt=""><div>${esc(p.name)} × ${c.q}</div><b>${fmt(p.price*c.q)}</b></div>`:''}).join('')}<div style="display:flex;justify-content:space-between"><span>Subtotal</span><span>${fmt(sub())}</span></div><div style="display:flex;justify-content:space-between"><span>Shipping</span><span>${fmt(sh)}</span></div><div style="display:flex;justify-content:space-between;font-size:19px;margin-top:8px"><b>Total</b><b>${fmt(sub()+sh)}</b></div></div><button class="btn dk full" onclick="placeOrder()">${I('check',18)} Complete order</button></div></div></div>`}
+function pmSel(){const v=document.querySelector('[name=pm]:checked').value;$('pm1').className='box'+(v==='COD'?' sel':'');$('pm2').className='box'+(v!=='COD'?' sel':'');$('bk').style.display=v==='COD'?'none':'block'}
+function placeOrder(){const g=i=>$(i).value.trim();if(!g('f_ph')||!g('f_fn')||!g('f_ad')||!g('f_ct')){alert('Please fill in phone, first name, address and city.');return}
+const sh=+S.settings.ship||0;const o={id:'#'+(1001+S.orders.length),date:new Date().toLocaleString(),name:g('f_fn')+' '+g('f_ln'),phone:g('f_ph'),address:g('f_ad')+', '+g('f_ct')+' '+g('f_pc'),pay:document.querySelector('[name=pm]:checked').value,status:'New',items:cart.map(c=>({name:prod(c.id).name,q:c.q,price:prod(c.id).price})),total:sub()+sh};
+S.orders.unshift(o);V.last=o;cart=[];save();go('thanks')}
+function thanks(){const o=V.last;return `<div class="tc"><div class="ok">${I('check',40)}</div><h2 style="color:var(--tx);margin:0 0 6px">Thank you!</h2><p>Your order ${o?esc(o.id):''} has been placed. We will contact you shortly to confirm.</p><button class="btn" onclick="go('home')">Continue shopping</button></div>`}
+
+/* ---------- ADMIN (no login) ---------- */
+function openAdmin(){V.page='admin';V.tab='dash';render();scrollTo(0,0)}
+function admin(){const T=[['dash','chart','Dashboard'],['products','pkg','Products'],['orders','card','Orders ('+S.orders.length+')'],['gallery','img','Gallery'],['reviews','chat','Reviews'],['settings','cog','Settings']];
+return `<div class="w ad"><div style="display:flex;justify-content:space-between;align-items:center;gap:8px"><h2 style="margin:0">Admin panel</h2><button class="btn sm ol" onclick="go('home')">${I('home',15)} View store</button></div><div class="tabs">${T.map(t=>`<button class="${V.tab===t[0]?'on':''}" onclick="V.tab='${t[0]}';V.edit=null;render()">${I(t[1],16)} ${t[2]}</button>`).join('')}</div>${({dash,products:plist,orders:olist,gallery:glist,reviews:rlist,settings:settingsForm})[V.tab]()}</div>`}
+function dash(){const rev=S.orders.filter(o=>o.status!=='Cancelled').reduce((a,o)=>a+o.total,0);const st=[['pkg',S.products.length,'Products'],['card',S.orders.length,'Total orders'],['chart',fmt(rev),'Revenue'],['refresh',S.orders.filter(o=>o.status==='New').length,'New orders']];
+return `<div class="stats">${st.map(s=>`<div>${I(s[0],22)}<b>${s[1]}</b><span>${s[2]}</span></div>`).join('')}</div><p class="hint" style="margin-top:18px">Manage everything from the tabs above: products, orders, the “In Action” gallery, customer reviews, and all store settings (hero, trust blocks, footer, contact, payment). Changes save automatically and show on the store immediately.</p>`}
+function plist(){return `<button class="btn" onclick="newP()">${I('plus',18)} Add product</button>${S.products.map(p=>`<div class="li"><img src="${p.images[0]||ph('','#888')}" alt=""><div><b>${esc(p.name)}</b><br><span class="hint">${fmt(p.price)} · ${p.stock?'In stock':'Out of stock'}</span></div><div class="ac"><button class="btn sm ol" onclick="editP('${p.id}')" aria-label="Edit">${I('edit',16)}</button><button class="btn sm dg" onclick="delP('${p.id}')" aria-label="Delete">${I('trash',16)}</button></div></div>`).join('')}`}
+function newP(){V.edit={id:'p'+Date.now(),name:'',price:0,compare:0,stock:true,rating:5,images:[],desc:'',specs:[],isNew:true};render()}
+function editP(id){V.edit=JSON.parse(JSON.stringify(prod(id)));render()}
+function delP(id){if(confirm('Delete this product?')){S.products=S.products.filter(p=>p.id!==id);cart=cart.filter(c=>c.id!==id);save();render()}}
+function pl(){return plist}
+function editForm(){const e=V.edit;return `<div class="box"><h3 style="margin-top:0">${e.isNew?'New':'Edit'} product</h3><label>Name</label><input value="${esc(e.name)}" oninput="V.edit.name=this.value"><div class="two"><div><label>Price</label><input type="number" value="${e.price}" oninput="V.edit.price=+this.value"></div><div><label>Old price (for sale badge)</label><input type="number" value="${e.compare}" oninput="V.edit.compare=+this.value"></div></div>
+<div class="two"><div><label>Rating (1–5)</label><input type="number" min="1" max="5" value="${e.rating}" oninput="V.edit.rating=Math.min(5,Math.max(1,+this.value||5))"></div><div><label>Availability</label><select onchange="V.edit.stock=this.value==='1'"><option value="1" ${e.stock?'selected':''}>In stock</option><option value="0" ${e.stock?'':'selected'}>Out of stock</option></select></div></div>
+<label>Description</label><textarea rows="6" oninput="V.edit.desc=this.value">${esc(e.desc)}</textarea>
+<label>Specifications (one per line: Name: Value)</label><textarea rows="5" oninput="V.edit.specs=this.value.split('\\n').filter(l=>l.includes(':')).map(l=>[l.split(':')[0].trim(),l.split(':').slice(1).join(':').trim()])">${esc(e.specs.map(r=>r[0]+': '+r[1]).join('\n'))}</textarea>
+<label>Images (first image is the cover)</label><div>${e.images.map((x,i)=>`<span class="ti"><img src="${x}" alt=""><button onclick="V.edit.images.splice(${i},1);render()" aria-label="Remove">${I('x',13)}</button></span>`).join('')||'<span class="hint">No images yet.</span>'}</div><input type="file" accept="image/*" multiple onchange="addImgs(this)" style="margin-top:8px">
+<div class="row"><button class="btn" onclick="saveP()">${I('check',18)} Save product</button><button class="btn ol" onclick="V.edit=null;render()">Cancel</button></div></div>`}
+const _pl=plist;plist=function(){return V.edit?editForm():_pl()};
+async function addImgs(inp){for(const f of inp.files)V.edit.images.push(await fileToData(f,900));render()}
+function saveP(){const e=V.edit;if(!e.name.trim()){alert('Enter a product name.');return}const n=e.isNew;delete e.isNew;if(n)S.products.unshift(e);else S.products=S.products.map(p=>p.id===e.id?e:p);V.edit=null;save();render()}
+function olist(){return S.orders.length?S.orders.map((o,i)=>`<div class="box"><div style="display:flex;justify-content:space-between"><b>${esc(o.id)}</b><small class="hint">${esc(o.date)}</small></div><p style="margin:8px 0">${esc(o.name)} · <a href="tel:${esc(o.phone)}" style="text-decoration:underline">${esc(o.phone)}</a><br>${esc(o.address)}<br>Payment: ${esc(o.pay)}</p>${o.items.map(x=>`<div>${esc(x.name)} × ${x.q}</div>`).join('')}<p><b>Total: ${fmt(o.total)}</b></p><div class="row"><select onchange="S.orders[${i}].status=this.value;save();render()">${['New','Confirmed','Shipped','Delivered','Cancelled'].map(s=>`<option ${o.status===s?'selected':''}>${s}</option>`).join('')}</select><button class="btn sm dg" style="flex:none" onclick="if(confirm('Delete order?')){S.orders.splice(${i},1);save();render()}">${I('trash',16)}</button></div></div>`).join(''):'<p class="tc">No orders yet.</p>'}
+function glist(){return `<label>Add images to the “In Action” gallery</label><input type="file" accept="image/*" multiple onchange="addG(this)">${S.gallery.map((g,i)=>`<div class="li"><img src="${g.img}" alt=""><div><input value="${esc(g.t)}" placeholder="Caption" oninput="S.gallery[${i}].t=this.value" onchange="save()"></div><button class="btn sm dg" onclick="S.gallery.splice(${i},1);save();render()">${I('trash',16)}</button></div>`).join('')||'<p class="tc">Gallery is empty (the section is hidden on the store).</p>'}`}
+async function addG(inp){for(const f of inp.files)S.gallery.push({img:await fileToData(f,900),t:''});save();render()}
+function rlist(){return `<button class="btn" onclick="S.reviews.unshift({n:'Customer',r:5,t:'Great product!'});save();render()">${I('plus',18)} Add review</button>${S.reviews.map((r,i)=>`<div class="box"><div class="two"><input value="${esc(r.n)}" placeholder="Name" oninput="S.reviews[${i}].n=this.value" onchange="save()"><select onchange="S.reviews[${i}].r=+this.value;save()">${[5,4,3,2,1].map(n=>`<option value="${n}" ${r.r===n?'selected':''}>${n} stars</option>`).join('')}</select></div><textarea rows="3" style="margin-top:8px" oninput="S.reviews[${i}].t=this.value" onchange="save()">${esc(r.t)}</textarea><button class="btn sm dg" style="margin-top:8px" onclick="S.reviews.splice(${i},1);save();render()">${I('trash',16)} Delete</button></div>`).join('')}`}
+function settingsForm(){const s=S.settings;const f=(k,l,t)=>`<label>${l}</label><input ${t?`type="${t}"`:''} value="${esc(s[k])}" oninput="S.settings.${k}=${t==='number'?'+this.value':'this.value'}" onchange="save()">`;const ta=(k,l,r)=>`<label>${l}</label><textarea rows="${r}" oninput="S.settings.${k}=this.value" onchange="save()">${esc(s[k])}</textarea>`;
+return `<p class="hint">Changes save automatically.</p><div class="box"><h3 class="h" style="margin-top:0">${I('home',20)} Store &amp; hero</h3>${f('name','Store name')}${f('bar','Announcement bar text (leave empty to hide)')}${f('hero','Hero title')}${f('sub','Hero subtitle')}${f('heroBtn','Hero button text')}<label>Hero background image</label>${s.heroImg?`<span class="ti"><img src="${s.heroImg}" alt=""><button onclick="S.settings.heroImg='';save();render()">${I('x',13)}</button></span>`:''}<input type="file" accept="image/*" onchange="heroUp(this)"></div>
+<div class="box"><h3 class="h" style="margin-top:0">${I('award',20)} Trust blocks</h3>${s.feats.map((x,i)=>`<label>Block ${i+1}</label><div class="two"><select onchange="S.settings.feats[${i}].i=this.value;save()">${[['truck','Truck'],['award','Award'],['shield','Shield'],['refresh','Refresh']].map(o=>`<option value="${o[0]}" ${x.i===o[0]?'selected':''}>${o[1]} icon</option>`).join('')}</select><input value="${esc(x.t)}" oninput="S.settings.feats[${i}].t=this.value" onchange="save()"></div><input style="margin-top:6px" value="${esc(x.d)}" oninput="S.settings.feats[${i}].d=this.value" onchange="save()">`).join('')}</div>
+<div class="box"><h3 class="h" style="margin-top:0">${I('phone',20)} Contact &amp; footer</h3>${f('phone','Phone')}${f('email','Email')}${f('address','Address')}${f('wa','WhatsApp number (country code, digits only)')}${ta('about','About text (footer)',3)}${f('fb','Facebook link')}${f('ig','Instagram link')}${f('yt','YouTube link')}</div>
+<div class="box"><h3 class="h" style="margin-top:0">${I('card',20)} Shipping &amp; payment</h3>${f('cur','Currency symbol')}${f('ship','Shipping fee','number')}${ta('bank','Bank transfer details (shown at checkout)',4)}</div>
+<button class="btn dg sm" onclick="if(confirm('Reset ALL data (products, orders, settings)?')){S=DEF();cart=[];save();render()}">Reset all data</button>`}
+async function heroUp(inp){if(inp.files[0]){S.settings.heroImg=await fileToData(inp.files[0],1400);save();render()}}
+
+function render(){const p=V.page;let h;
+if(p==='admin')h=admin();
+else h=header()+(p==='home'?home():p==='product'?productPage():p==='checkout'?checkout():thanks())+footer()+cartDrawer();
+$('app').innerHTML=h;document.title=S.settings.name}
+if(location.hash==='#admin')V.page='admin';
+render();
+</script>
+</body>
+</html>

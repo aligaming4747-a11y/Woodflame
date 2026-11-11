@@ -1,0 +1,49 @@
+{
+  "rules": {
+    "store": {
+      ".read": true,
+      ".write": "auth != null && (auth.uid === '7KAkQPIj7rcBW6QnJcT9BWAit0j2' || auth.token.email === 'woodflare91@gmail.com')",
+      "products": {
+        ".read": true,
+        ".write": "auth != null && (auth.uid === '7KAkQPIj7rcBW6QnJcT9BWAit0j2' || auth.token.email === 'woodflare91@gmail.com')"
+      },
+      "settings": {
+        ".read": true,
+        ".write": "auth != null && (auth.uid === '7KAkQPIj7rcBW6QnJcT9BWAit0j2' || auth.token.email === 'woodflare91@gmail.com')"
+      },
+      "heroSlides": {
+        ".read": true,
+        ".write": "auth != null && (auth.uid === '7KAkQPIj7rcBW6QnJcT9BWAit0j2' || auth.token.email === 'woodflare91@gmail.com')"
+      },
+      "gallery": {
+        ".read": true,
+        ".write": "auth != null && (auth.uid === '7KAkQPIj7rcBW6QnJcT9BWAit0j2' || auth.token.email === 'woodflare91@gmail.com')"
+      },
+      "actionVideos": {
+        ".read": true,
+        ".write": "auth != null && (auth.uid === '7KAkQPIj7rcBW6QnJcT9BWAit0j2' || auth.token.email === 'woodflare91@gmail.com')"
+      },
+      "orders": {
+        ".read": true,
+        "$order_id": {
+          ".read": true,
+          ".write": "!data.exists() || (auth != null && (auth.uid === '7KAkQPIj7rcBW6QnJcT9BWAit0j2' || auth.token.email === 'woodflare91@gmail.com'))"
+        }
+      },
+      "reviews": {
+        ".read": true,
+        "$review_id": {
+          ".read": true,
+          ".write": "!data.exists() || (auth != null && (auth.uid === '7KAkQPIj7rcBW6QnJcT9BWAit0j2' || auth.token.email === 'woodflare91@gmail.com'))"
+        }
+      },
+      "registeredUsers": {
+        ".read": true,
+        "$user_id": {
+          ".read": true,
+          ".write": "auth != null && (auth.uid === $user_id || auth.uid === '7KAkQPIj7rcBW6QnJcT9BWAit0j2' || auth.token.email === 'woodflare91@gmail.com')"
+        }
+      }
+    }
+  }
+}

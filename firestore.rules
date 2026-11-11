@@ -1,0 +1,39 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    
+    // Helper function to check if the user is the designated Admin
+    function isAdmin() {
+      return request.auth != null && (
+        request.auth.uid == "7KAkQPIj7rcBW6QnJcT9BWAit0j2" || 
+        request.auth.token.email == "woodflare91@gmail.com"
+      );
+    }
+
+    // Store Configuration, Products & Catalog
+    match /store/{document} {
+      allow read: if true;
+      allow write: if isAdmin();
+    }
+
+    // Orders Collection
+    match /orders/{orderId} {
+      allow read: if true;
+      allow create: if true; // Any customer can place an order
+      allow update, delete: if isAdmin(); // Only Admin can update status or delete
+    }
+
+    // Users Collection
+    match /users/{userId} {
+      allow read: if true;
+      allow write: if request.auth != null && (request.auth.uid == userId || isAdmin());
+    }
+
+    // Reviews Collection
+    match /reviews/{reviewId} {
+      allow read: if true;
+      allow create: if true;
+      allow update, delete: if isAdmin();
+    }
+  }
+}
